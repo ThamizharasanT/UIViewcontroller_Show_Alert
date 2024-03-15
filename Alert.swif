@@ -1,0 +1,24 @@
+
+//Button Click or Api Succe
+  let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let popoverContentController = storyboard.instantiateViewController(withIdentifier: "PopViewController") as? PopViewController
+        popoverContentController?.preferredContentSize = CGSize(width: 200, height: 200)
+        popoverContentController?.modalPresentationStyle = .popover
+        popoverContentController?.popoverPresentationController?.backgroundColor = .white
+        
+//        self.view.frame.height/2
+//        (self.view.frame.width/2)+20
+        if let popoverPresentationController = popoverContentController?.popoverPresentationController {
+            popoverPresentationController.permittedArrowDirections = []
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = self.view.bounds
+            popoverPresentationController.delegate = self
+            if let popoverController = popoverContentController {
+                self.present(popoverController, animated: true, completion: nil)
+            }
+        }
+
+// height managed function
+  func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+       return UIModalPresentationStyle.none
+    }
